@@ -1,0 +1,13 @@
+package edu.jspiders.hiberatecurdoperation.dao;
+
+import org.hibernate.cfg.Configuration;
+
+import edu.jspiders.hiberatecurdoperation.dto.Vehicle;
+
+public class VehicleDataBaseOperations
+{
+	public void insertVehicle(Vehicle newVehicle)
+	{
+		Configuration config = new Configuration();
+	}
+}

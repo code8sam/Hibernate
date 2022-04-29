@@ -1,0 +1,76 @@
+package edu.jspiders.hqloperationsdemo.dao;
+
+import java.util.List;
+
+import javax.persistence.Query;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import edu.jspiders.hqloperationsdemo.dto.Employee;
+
+public class EmployeeOperationImpl implements EmployeeOperation
+{
+	private static SessionFactory factory = null;
+	static {
+		Configuration configuration = new Configuration();
+		configuration.configure();
+		
+		factory = configuration.buildSessionFactory();
+	}
+	
+	@Override
+	public boolean addEmployee(Employee newEmployee) 
+	{
+		Session session = factory.openSession();
+		session.save(newEmployee);
+		
+		Transaction tx = session.beginTransaction();
+		try
+		{
+			tx.commit();
+			return true;
+		}
+		catch (Exception e) 
+		{
+			tx.rollback();
+			return false;
+		}
+	}
+
+	@Override
+	public List<Employee> getAllEmployees() 
+	{
+		Session session = factory.openSession();
+		String hql = "FROM Employee";
+		Query query = session.createQuery(hql);
+		
+		List<Employee> allEmps = query.getResultList();
+		
+		return allEmps;
+	}
+
+	@Override
+	public Employee search(int id) 
+	{
+		Session session = factory.openSession();
+		Employee e = session.get(Employee.class, id);
+		return e;
+	}
+
+	@Override
+	public List<Employee> search(String name)
+	{
+		Session session = factory.openSession();
+		String hql = "FROM Employee WHERE name = :nm";
+		Query query = session.createQuery(hql);
+		query.setParameter("nm", name);
+		
+		List<Employee> allEmps = query.getResultList();
+		
+		return allEmps;
+	}
+
+}

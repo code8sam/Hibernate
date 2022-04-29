@@ -1,0 +1,22 @@
+package edu.jspiders.hqloperationsdemo.dao;
+
+import java.util.List;
+
+import edu.jspiders.hqloperationsdemo.dto.Employee;
+
+public class EmployeeOperationImpl implements EmployeeOperation
+{
+
+	@Override
+	public boolean addEmployee(Employee newEmployee) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Employee> getAllEmployees() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

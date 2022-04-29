@@ -1,0 +1,50 @@
+package edu.jspiders.hqloperationsdemo.dao;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import edu.jspiders.hqloperationsdemo.dto.Employee;
+
+public class EmployeeOperationImpl implements EmployeeOperation
+{
+	private static SessionFactory factory = null;
+	static {
+		Configuration configuration = new Configuration();
+		configuration.configure();
+		
+		factory = configuration.buildSessionFactory();
+	}
+	
+	@Override
+	public boolean addEmployee(Employee newEmployee) 
+	{
+		Session session = factory.openSession();
+		session.save(newEmployee);
+		
+		Transaction tx = session.beginTransaction();
+		try
+		{
+			tx.commit();
+			return true;
+		}
+		catch (Exception e) 
+		{
+			tx.rollback();
+			return false;
+		}
+		
+		
+		return false;
+	}
+
+	@Override
+	public List<Employee> getAllEmployees() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

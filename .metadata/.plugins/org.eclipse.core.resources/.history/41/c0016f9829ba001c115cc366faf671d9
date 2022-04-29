@@ -1,0 +1,30 @@
+package edu.jspiders.hiberatecurdoperation;
+
+import java.util.Scanner;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	Scanner sc = new Scanner(System.in);
+    	while (true)
+    	{
+    		System.out.println("1.Insert\n2.Search\n3.Update Vehicle data\n4.Delete Vehicle\n5.Exit");
+    		System.out.println("Enter the choice");
+    		int choice = sc.nextInt();
+    		
+    		switch (choice) {
+			case 1:
+				
+				break;
+
+			default:
+				break;
+			}
+		}
+    }
+}

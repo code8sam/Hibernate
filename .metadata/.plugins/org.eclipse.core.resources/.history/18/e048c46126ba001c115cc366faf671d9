@@ -1,0 +1,11 @@
+package edu.jspiders.hiberatecurdoperation.dao;
+
+import edu.jspiders.hiberatecurdoperation.dto.Vehicle;
+
+public class VehicleDataBaseOperations
+{
+	public void insertVehicle(Vehicle newVehicle)
+	{
+		
+	}
+}

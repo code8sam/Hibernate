@@ -1,0 +1,113 @@
+package edu.jspiders.hqloperationsdemo;
+
+import java.util.List;
+import java.util.Scanner;
+
+import edu.jspiders.hqloperationsdemo.dao.EmployeeOperation;
+import edu.jspiders.hqloperationsdemo.dao.EmployeeOperationImpl;
+import edu.jspiders.hqloperationsdemo.dto.Employee;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+	public static void main( String[] args )
+	{
+		Scanner sc = new Scanner(System.in);
+		EmployeeOperation operation = new EmployeeOperationImpl();
+
+		System.out.println("1.Insert\n2.Get all EMployees\n3.Search\n4.Get Based on salary\n5.Get Based on salary user");
+		int choice = sc.nextInt();
+
+		switch (choice) {
+		case 1:
+			/*System.out.println("Enter ID");
+			int id = sc.nextInt();*/
+			System.out.println("Enter Name");
+			String name = sc.next();
+			System.out.println("Enter Salary");
+			double salary = sc.nextDouble();
+
+			Employee newEmployee = new Employee(0, name, salary);
+
+			if(operation.addEmployee(newEmployee))
+				System.out.println("Inserted!!");
+			else
+				System.out.println("NOT Inserted!!!");
+			break;
+		case 2:
+			List<Employee> allEmployees = operation.getAllEmployees();
+			for (Employee employee : allEmployees) 
+			{
+				System.out.println(employee);
+			}
+			break;
+		case 3:
+			System.out.println("a.Search by ID\nb.Search by Name");
+			char ch1 = sc.next().charAt(0);
+			if(ch1 == 'a') 
+			{
+				System.out.println("Enter ID");
+				int id1 = sc.nextInt();
+				Employee e = operation.search(id1);
+				if(e != null)
+					System.out.println(e);
+				else
+					System.out.println("Emp data is not Present");
+			}
+			else if(ch1 == 'b') 
+			{
+				System.out.println("Enter Name");
+				String name1 = sc.next();
+				List<Employee> allEmps = operation.search(name1);
+				if(allEmps.isEmpty())
+					System.out.println("Data not present");
+				else
+				{
+					for (Employee employee : allEmps)
+					{
+						System.out.println(employee);
+					}
+				}
+			}
+		case 4:
+			List<Employee> allEmps = operation.getEmpsBasedOnSalary();
+			if(allEmps.isEmpty())
+				System.out.println("Data not present");
+			else
+			{
+				for (Employee employee : allEmps)
+				{
+					System.out.println(employee);
+				}
+			}
+			
+			break;
+			
+		case 5:
+			System.out.println("Enter Lower Range salary");
+			double lowerSal = sc.nextDouble();
+			
+			System.out.println("Enter Upper Range salary");
+			double upperSal = sc.nextDouble();
+			
+			List<Employee> allEmps1 = operation.getEmpsBasedOnSalary(lowerSal,upperSal);
+			if(allEmps1.isEmpty())
+				System.out.println("Data not present");
+			else
+			{
+				for (Employee employee : allEmps1)
+				{
+					System.out.println(employee);
+				}
+			}
+			
+			break;
+		default:
+			break;
+		}
+
+	}
+}

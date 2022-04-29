@@ -1,0 +1,8 @@
+package edu.jspiders.hqloperationsdemo.dao;
+
+import edu.jspiders.hqloperationsdemo.dto.Employee;
+
+public interface EmployeeOperation
+{
+	boolean addEmployee(Employee newEmployee)
+}

@@ -1,0 +1,45 @@
+package edu.jspiders.hqloperationsdemo;
+
+import java.util.Scanner;
+
+import edu.jspiders.hqloperationsdemo.dao.EmployeeOperation;
+import edu.jspiders.hqloperationsdemo.dao.EmployeeOperationImpl;
+import edu.jspiders.hqloperationsdemo.dto.Employee;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	Scanner sc = new Scanner(System.in);
+    	EmployeeOperation operation = new EmployeeOperationImpl();
+    	
+    	System.out.println("1.Insert\n2.Get all EMployees");
+    	int choice = sc.nextInt();
+    	
+    	switch (choice) {
+		case 1:
+			System.out.println("Enter ID");
+			int id = sc.nextInt();
+			System.out.println("Enter Name");
+			String name = sc.next();
+			System.out.println("Enter Salary");
+			double salary = sc.nextDouble();
+			
+			Employee newEmployee = new Employee(id, name, salary);
+			
+			if(operation.addEmployee(newEmployee))
+				System.out.println("Inserted!!");
+			else
+				System.out.println("NOT Inserted!!!");
+			break;
+
+		default:
+			break;
+		}
+    	
+    }
+}

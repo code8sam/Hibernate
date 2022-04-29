@@ -1,0 +1,27 @@
+package edu.jspiders.hiberatecurdoperation.dto;
+
+public class Vehicle 
+{
+	private String chasisNumber;
+	private String model;
+	private String color;
+	private double price;
+	private int yearOfManufacture;
+	private String type;
+	
+	public Vehicle() {
+	}
+
+	public Vehicle(String chasisNumber, String model, String color, double price, int yearOfManufacture, String type) {
+		super();
+		this.chasisNumber = chasisNumber;
+		this.model = model;
+		this.color = color;
+		this.price = price;
+		this.yearOfManufacture = yearOfManufacture;
+		this.type = type;
+	}
+	
+	
+	
+}

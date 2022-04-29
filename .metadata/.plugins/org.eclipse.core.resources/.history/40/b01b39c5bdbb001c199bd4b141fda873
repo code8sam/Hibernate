@@ -1,0 +1,45 @@
+package edu.jspiders.hiberatecurdoperation.dao;
+
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import org.hibernate.HibernateException;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.id.IdentifierGenerator;
+
+public class MyOwnGenerator implements IdentifierGenerator
+{
+
+	@Override
+	public Serializable generate(SharedSessionContractImplementor session, Object object) 
+			throws HibernateException
+	{
+		String dburl = "jdbc:mysql://localhost:3306/heha22_db?user=root&password=root";
+		String query = "SELECT max(chasis_number) FROM vehicle_table";
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try 
+		{
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			con = DriverManager.getConnection(dburl);
+			
+			stmt = con.createStatement();
+			
+			rs = stmt.executeQuery(query);
+		} 
+		catch (ClassNotFoundException | SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+}

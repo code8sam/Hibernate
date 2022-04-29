@@ -1,0 +1,16 @@
+package edu.jspiders.hqloperationsdemo.dao;
+
+import java.util.List;
+
+import edu.jspiders.hqloperationsdemo.dto.Employee;
+
+public interface EmployeeOperation
+{
+	boolean addEmployee(Employee newEmployee);
+	
+	List<Employee> getAllEmployees();
+	
+	Employee search(int id);
+	Employee search(String name);
+	
+}
